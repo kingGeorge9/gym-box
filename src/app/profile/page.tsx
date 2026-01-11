@@ -26,7 +26,7 @@ const ProfilePage = () => {
   // const { user } = useUser();
   // const userId = user?.id || "";
   // Using anonymous UUID for user identification
-  const { userId, isLoading: userLoading } = useAnonymousUser();
+  const { userId } = useAnonymousUser();
 
   const allPlans = useQuery(
     api.plans.getUserPlans,

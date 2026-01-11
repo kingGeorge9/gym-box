@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -31,7 +30,7 @@ export default function MealEditorDialog({
   mealType,
   currentMealName,
 }: MealEditorDialogProps) {
-  const [selectedMeal, setSelectedMeal] = useState<string | null>(null);
+  // State removed - not needed for current implementation
 
   const mealAlternatives = useQuery(api.planManagement.getMealAlternatives, {
     planId,
@@ -40,7 +39,13 @@ export default function MealEditorDialog({
 
   const updateMeal = useMutation(api.planManagement.updateMeal);
 
-  const handleSelectMeal = async (meal: any) => {
+  const handleSelectMeal = async (meal: {
+    name: string;
+    calories: { min: number; max: number };
+    protein?: { min: number; max: number };
+    carbs?: { min: number; max: number };
+    fat?: { min: number; max: number };
+  }) => {
     try {
       await updateMeal({
         mealPlanId,
@@ -76,9 +81,6 @@ export default function MealEditorDialog({
           {mealAlternatives && mealAlternatives.length > 0 ? (
             mealAlternatives.map((meal, index) => {
               const isSelected = meal.name === currentMealName;
-              const avgCalories = Math.round(
-                (meal.calories.min + meal.calories.max) / 2
-              );
 
               return (
                 <div

@@ -17,18 +17,12 @@ import {
   Clock,
   AppleIcon,
   ShieldIcon,
-  Trash2Icon,
-  CalendarIcon,
   TrendingUpIcon,
   PlayIcon,
 } from "lucide-react";
 import { USER_PROGRAMS } from "@/constants";
-import { useQuery, useMutation } from "convex/react";
+import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
-import { Id } from "../../convex/_generated/dataModel";
-import { useState } from "react";
-// CLERK AUTHENTICATION DISABLED - Keeping imports for future use
-// import { useUser } from "@clerk/nextjs";
 import { useAnonymousUser } from "@/lib/useAnonymousUser";
 import LoadingSpinner from "./LoadingSpinner";
 
@@ -36,7 +30,7 @@ const UserPrograms = () => {
   // const { user } = useUser();
   // const userId = user?.id || "";
   // Using anonymous UUID for user identification
-  const { userId, isLoading: userLoading } = useAnonymousUser();
+  const { userId } = useAnonymousUser();
   const userPlans = useQuery(
     api.plans.getUserPlans,
     userId ? { userId } : "skip"
@@ -45,8 +39,9 @@ const UserPrograms = () => {
     api.users.getUserProfile,
     userId ? { userId } : "skip"
   );
-  const deletePlan = useMutation(api.planManagement.deletePlan);
-  const [deletingPlanId, setDeletingPlanId] = useState<string | null>(null);
+  // Delete functionality commented out for now
+  // const deletePlan = useMutation(api.planManagement.deletePlan);
+  // const [deletingPlanId, setDeletingPlanId] = useState<string | null>(null);
 
   // Get the active plan
   const activePlan = userPlans?.find((plan) => plan.isActive);
@@ -61,6 +56,7 @@ const UserPrograms = () => {
     activePlan ? { planId: activePlan._id } : "skip"
   );
 
+  /* Delete functionality - uncomment when needed
   const handleDeletePlan = async (planId: Id<"plans">) => {
     if (
       !confirm(
@@ -80,6 +76,7 @@ const UserPrograms = () => {
       setDeletingPlanId(null);
     }
   };
+  */
 
   // Show loading state while fetching
   if (userPlans === undefined || userProfile === undefined) {
@@ -178,7 +175,7 @@ const UserPrograms = () => {
 
               <CardHeader className="pt-6 px-5">
                 <CardTitle className="text-xl text-foreground mb-2">
-                  Today's Training
+                  Today&apos;s Training
                 </CardTitle>
                 <p className="text-sm text-muted-foreground capitalize">
                   {today}
@@ -195,7 +192,7 @@ const UserPrograms = () => {
                       <div className="space-y-2 text-sm">
                         {todaysWorkout.exercises
                           ?.slice(0, 3)
-                          .map((exercise: any, idx: number) => (
+                          .map((exercise: { name: string }, idx: number) => (
                             <div
                               key={idx}
                               className="flex items-center gap-2 text-muted-foreground"
@@ -255,7 +252,7 @@ const UserPrograms = () => {
 
               <CardHeader className="pt-6 px-5">
                 <CardTitle className="text-xl text-foreground mb-2">
-                  Today's Meals
+                  Today&apos;s Meals
                 </CardTitle>
                 <p className="text-sm text-muted-foreground">
                   Target: {activePlan.targetCalories} kcal

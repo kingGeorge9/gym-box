@@ -26,7 +26,7 @@ const GenerateProgramPage = () => {
   // Get user ID from Clerk
   // const userId = user?.id || "";
   // Using anonymous UUID for user identification
-  const { userId, isLoading: userLoading } = useAnonymousUser();
+  const { userId } = useAnonymousUser();
 
   const handleGenerateProgram = async (data: UserFitnessData) => {
     setModalOpen(false); // Close modal immediately

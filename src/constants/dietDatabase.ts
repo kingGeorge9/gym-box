@@ -374,10 +374,10 @@ export const getRandomMealOption = (diet: DietData, mealType: "breakfast" | "lun
 
 export const getNigerianMeals = (diet: DietData) => {
   return {
-    breakfast: diet.breakfastOptions.filter((meal: any) => meal.isNigerian),
-    lunch: diet.lunchOptions.filter((meal: any) => meal.isNigerian),
-    dinner: diet.dinnerOptions.filter((meal: any) => meal.isNigerian),
-    snacks: diet.snackOptions.filter((snack: any) => snack.isNigerian),
+    breakfast: diet.breakfastOptions.filter((meal: DietMealOption) => (meal as DietMealOption & { isNigerian?: boolean }).isNigerian),
+    lunch: diet.lunchOptions.filter((meal: DietMealOption) => (meal as DietMealOption & { isNigerian?: boolean }).isNigerian),
+    dinner: diet.dinnerOptions.filter((meal: DietMealOption) => (meal as DietMealOption & { isNigerian?: boolean }).isNigerian),
+    snacks: diet.snackOptions.filter((snack: DietSnackOption) => (snack as DietSnackOption & { isNigerian?: boolean }).isNigerian),
   };
 };
 

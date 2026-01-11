@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
 
 // CLERK AUTHENTICATION DISABLED - Keeping imports for future use
 // import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
@@ -19,7 +18,7 @@ import type { NextRequest } from 'next/server';
 
 // Middleware disabled - no authentication required
 // Just pass through all requests
-export function middleware(request: NextRequest) {
+export function middleware() {
   return NextResponse.next();
 }
 

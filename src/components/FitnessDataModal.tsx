@@ -197,7 +197,7 @@ export default function FitnessDataModal({
     }
   };
 
-  const updateFormData = (field: keyof UserFitnessData, value: any) => {
+  const updateFormData = (field: keyof UserFitnessData, value: string | number | string[]) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     // Clear error for this field
     if (errors[field]) {
