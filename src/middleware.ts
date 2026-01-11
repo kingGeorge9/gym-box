@@ -1,23 +1,6 @@
 import { NextResponse } from 'next/server';
 
-// CLERK AUTHENTICATION DISABLED - Keeping imports for future use
-// import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
-
-// const isPublicRoute = createRouteMatcher([
-//   '/',
-//   '/sign-in(.*)',
-//   '/sign-up(.*)',
-//   '/api/webhooks(.*)',
-// ]);
-
-// export default clerkMiddleware(async (auth, request) => {
-//   if (!isPublicRoute(request)) {
-//     await auth.protect();
-//   }
-// });
-
-// Middleware disabled - no authentication required
-// Just pass through all requests
+// Simple pass-through middleware - no authentication
 export function middleware() {
   return NextResponse.next();
 }

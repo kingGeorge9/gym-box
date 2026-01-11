@@ -171,6 +171,7 @@ export default function FitnessDataModal({
       // Reset form
       setStep(1);
       setFormData({
+        name: "",
         age: 0,
         gender: "",
         height: 0,
@@ -186,6 +187,7 @@ export default function FitnessDataModal({
         injuries: "",
         dietaryStyle: "",
         allergies: "",
+        dietaryRestrictions: "",
         culturalPreference: "",
         mealsPerDay: 3,
         calorieTarget: undefined,
@@ -197,7 +199,7 @@ export default function FitnessDataModal({
     }
   };
 
-  const updateFormData = (field: keyof UserFitnessData, value: string | number | string[]) => {
+  const updateFormData = (field: keyof UserFitnessData, value: string | number | string[] | undefined) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     // Clear error for this field
     if (errors[field]) {

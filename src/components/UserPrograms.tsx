@@ -183,22 +183,22 @@ const UserPrograms = () => {
               </CardHeader>
 
               <CardContent className="px-5">
-                {todaysWorkout && todaysWorkout.workout !== "rest" ? (
+                {todaysWorkout && todaysWorkout.workoutType !== "rest" ? (
                   <div className="space-y-4">
                     <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
                       <h3 className="font-bold text-primary text-lg mb-2">
-                        {todaysWorkout.workout}
+                        {todaysWorkout.workoutType}
                       </h3>
                       <div className="space-y-2 text-sm">
                         {todaysWorkout.exercises
                           ?.slice(0, 3)
-                          .map((exercise: { name: string }, idx: number) => (
+                          .map((exercise: { exerciseName: string }, idx: number) => (
                             <div
                               key={idx}
                               className="flex items-center gap-2 text-muted-foreground"
                             >
                               <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                              <span>{exercise.name}</span>
+                              <span>{exercise.exerciseName}</span>
                             </div>
                           ))}
                         {(todaysWorkout.exercises?.length || 0) > 3 && (

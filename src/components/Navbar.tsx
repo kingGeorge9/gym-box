@@ -5,16 +5,11 @@ import {
   HomeIcon,
   UserIcon,
   ZapIcon,
-  // LogOutIcon,
 } from "lucide-react";
 import Link from "next/link";
-// import { Button } from "./ui/button";
-// CLERK AUTHENTICATION DISABLED - Keeping imports for future use
-// import { useUser, SignOutButton, SignInButton } from "@clerk/nextjs";
 
 const Navbar = () => {
-  // const { isSignedIn, user } = useUser();
-  // Authentication disabled - all users have access
+  // All users have access - no authentication required
   const isSignedIn = true;
 
   return (

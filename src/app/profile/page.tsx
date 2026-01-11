@@ -23,8 +23,6 @@ import { Id } from "../../../convex/_generated/dataModel";
 import { useAnonymousUser } from "@/lib/useAnonymousUser";
 
 const ProfilePage = () => {
-  // const { user } = useUser();
-  // const userId = user?.id || "";
   // Using anonymous UUID for user identification
   const { userId } = useAnonymousUser();
 
